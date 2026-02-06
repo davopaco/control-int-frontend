@@ -16,5 +16,16 @@
       </div>
     </div>
     <legend class="font-bold text-xl">Imágenes</legend>
+    <p-carousel [value]="images" [numVisible]="3" [numScroll]="3" [circular]="false">
+      <ng-template let-image #item>
+        <div class="border border-surface rounded-border m-2 p-4">
+          <div class="mb-4">
+            <div class="relative mx-auto">
+              <img [src]="image.content" [alt]="product.nombre" class="w-full rounded-border" />
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
 }
