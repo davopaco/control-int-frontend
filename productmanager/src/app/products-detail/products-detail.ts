@@ -51,6 +51,7 @@ export class ProductsDetail {
     });
   }
 
+  //Obtener las imágenes para cada producto
   getImagesForProduct() {
     this.api.get<ImagenDto[]>(`images/${this.productId}`).subscribe({
       next: (data: ImagenDto[]) => {
@@ -67,7 +68,8 @@ export class ProductsDetail {
     });
   }
 
-  async onUpload(event: FileUploadHandlerEvent) {
+  //Transformar los archivos tipo File a string base64
+  onUpload(event: FileUploadHandlerEvent) {
     const imagesToUpload = event.files;
     const reader = new FileReader();
     imagesToUpload.forEach((image) => {
@@ -76,12 +78,29 @@ export class ProductsDetail {
     });
   }
 
+  //Crear imágenes
   createImage(content: string) {
     const body = { content: content, productId: this.productId };
     this.api.post('images', body).subscribe({
       next: (data: any) => {
         this.getImagesForProduct();
         this.cdr.detectChanges();
+      },
+      error: (data: any) => {
+        this.msg.add({
+          severity: 'error',
+          summary: 'An error occurred',
+          detail: data.error,
+        });
+      },
+    });
+  }
+
+  //Delete images
+  deleteProduct(id: number) {
+    this.api.delete(`images/${id}`).subscribe({
+      next: (data: any) => {
+        this.getImagesForProduct();
       },
       error: (data: any) => {
         this.msg.add({

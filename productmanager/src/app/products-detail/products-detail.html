@@ -19,10 +19,15 @@
     <p-carousel [value]="images" [numVisible]="3" [numScroll]="3" [circular]="false">
       <ng-template let-image #item>
         <div class="border border-surface rounded-border m-2 p-4">
-          <div class="mb-4">
+          <div class="flex flex-col gap-2 justify-center items-center">
             <div class="relative mx-auto">
               <img [src]="image.content" [alt]="product.nombre" class="w-full rounded-border" />
             </div>
+            <p-button
+              severity="danger"
+              label="Borrar"
+              (onClick)="deleteProduct(image.id)"
+            ></p-button>
           </div>
         </div>
       </ng-template>
@@ -36,7 +41,6 @@
           chooseLabel="Escoge"
           accept="image/*"
           maxFileSize="10000000"
-          [multiple]="true"
           [customUpload]="true"
           (uploadHandler)="onUpload($event)"
         />
