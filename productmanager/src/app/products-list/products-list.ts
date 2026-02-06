@@ -196,7 +196,6 @@ export class ProductsList {
         this.visible = false;
       },
       error: (data) => {
-        console.log(data);
         this.msg.add({
           severity: 'error',
           summary: 'An error occurred',

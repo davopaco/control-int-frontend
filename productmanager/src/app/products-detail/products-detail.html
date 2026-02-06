@@ -1,1 +1,20 @@
-<p>products-detail works!</p>
+@if (product) {
+  <div class="py-4 px-20 flex flex-col gap-4">
+    <legend class="font-bold text-2xl">{{ product.nombre }}</legend>
+    <div class="flex justify-between">
+      <div class="flex flex-col gap-2">
+        <legend class="font-medium">Descripción</legend>
+        <span>{{ product.descripcion }}</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <legend class="font-medium">Precio del producto</legend>
+        <span>$ {{ product.precio }}</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <legend class="font-medium">Estado del producto</legend>
+        <span>{{ product.estado }}</span>
+      </div>
+    </div>
+    <legend class="font-bold text-xl">Imágenes</legend>
+  </div>
+}
