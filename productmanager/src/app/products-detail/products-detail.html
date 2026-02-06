@@ -27,5 +27,21 @@
         </div>
       </ng-template>
     </p-carousel>
+    <div class="flex gap-2 items-center">
+      <legend class="font-medium">Sube tus imágenes</legend>
+      <div class="card flex flex-wrap gap-6 items-center justify-between">
+        <p-fileupload
+          #fu
+          mode="basic"
+          chooseLabel="Escoge"
+          accept="image/*"
+          maxFileSize="10000000"
+          [multiple]="true"
+          [customUpload]="true"
+          (uploadHandler)="onUpload($event)"
+        />
+        <p-button label="Cargar" (onClick)="fu.upload()" severity="secondary" />
+      </div>
+    </div>
   </div>
 }
